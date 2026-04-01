@@ -4,17 +4,6 @@ import Reveal from './Reveal'
 
 const certifications = [
   {
-    title: 'AWS Certified Developer – Associate',
-    issuer: 'Amazon Web Services',
-    date: 'Oct 2025',
-    description:
-      'Hands-on specialization in building, deploying, and scaling cloud applications on AWS with real-world projects and developer tools.',
-    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
-    pdf: null,
-    accent: 'hover:border-orange-500/40',
-    glow: 'from-orange-500/10 to-yellow-500/5',
-  },
-  {
     title: 'IBM SQL, ETL Processing & Data Warehousing',
     issuer: 'IBM',
     date: 'Sep 2025',
