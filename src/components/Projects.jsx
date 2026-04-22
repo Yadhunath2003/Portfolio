@@ -4,6 +4,16 @@ import Reveal from './Reveal'
 
 const featured = [
   {
+    title: 'CCAD AI',
+    description:
+      'An award-winning AI project that turns every radio transmission into structured intelligence to provide live summaries, conflict alerts, and tactical maps, automatically, so commanders see the full picture instantly.',
+    image: '/assets/ccad.png',
+    tags: ['Next.js', 'Gemini API', 'ElevenLabs API', 'WebSockets', 'SQLlite', 'Hackathon winner'],
+    ribbon: 'Hackathon winner',
+    github: 'https://github.com/Yadhunath2003/FirstResponseAI',
+    live: 'https://devpost.com/software/firstresponse-ai-4us081'
+  },
+  {
     title: 'HawkLoop',
     description:
       'A capstone web and mobile application that helps University of Kansas students track campus buses in real time, improving accessibility and reducing wait times. Built a Django backend with live GPS data, a React web frontend, and an Expo.js mobile app — all backed by PostgreSQL.',
@@ -71,9 +81,16 @@ export default function Projects() {
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
                       <p className="font-mono text-xs text-accent mb-1">Featured Project</p>
-                      <h3 className="text-xl font-bold text-zinc-100 group-hover:text-white">
-                        {p.title}
-                      </h3>
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-xl font-bold text-zinc-100 group-hover:text-white">
+                          {p.title}
+                        </h3>
+                        {p.ribbon && (
+                          <span className="inline-flex items-center rounded-full bg-amber-400 text-zinc-950 text-[10px] font-semibold uppercase tracking-[0.25em] px-3 py-1">
+                            {p.ribbon}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <div className="flex gap-3 text-zinc-500 shrink-0">
                       {p.github && (

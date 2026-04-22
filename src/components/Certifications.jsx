@@ -46,6 +46,12 @@ const awards = [
     logo: null,
     detail: 'Placed 4th among 100+ participants in the AMATY Mathematics Competition.',
   },
+  {
+    title: 'HackKU 2026 — Best Use of ElevenLabs API',
+    org: 'University of Kansas',
+    logo: '/assets/Ku-logo.svg',
+    detail: 'Won Best Use of ElevenLabs API for creating a real-time AI communication platform in a 36-hour hackathon.',
+  },
 ]
 
 export default function Certifications() {
