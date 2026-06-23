@@ -67,7 +67,7 @@ export default function Experience() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-zinc-100">
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                       {job.title}{' '}
                       <span className="text-accent">
                         @{' '}
@@ -83,14 +83,14 @@ export default function Experience() {
                     </h3>
                     <p className="text-sm text-zinc-500">{job.location}</p>
                   </div>
-                  <span className="font-mono text-xs text-zinc-500 whitespace-nowrap bg-zinc-800/60 px-3 py-1 rounded-full border border-border">
+                  <span className="font-mono text-xs text-zinc-500 whitespace-nowrap bg-zinc-100 dark:bg-zinc-800/60 px-3 py-1 rounded-full border border-border">
                     {job.period}
                   </span>
                 </div>
 
                 <ul className="space-y-2">
                   {job.bullets.map((b, j) => (
-                    <li key={j} className="flex gap-3 text-sm text-zinc-400 leading-relaxed">
+                    <li key={j} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                       <span className="text-accent mt-1 shrink-0">▹</span>
                       <span>{b}</span>
                     </li>

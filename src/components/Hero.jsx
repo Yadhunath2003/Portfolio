@@ -36,9 +36,23 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
     >
-      {/* Background glow blobs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Dot grid — uses CSS variable so it adapts to light/dark */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, var(--dot-color) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+        }}
+      />
+
+      {/* Animated drifting orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none animate-drift" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none animate-drift-slow" />
+
+      {/* Radial accent glow behind text */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl w-full text-center space-y-6 animate-fade-up">
         <p className="font-mono text-accent text-sm tracking-widest uppercase">
@@ -49,15 +63,16 @@ export default function Hero() {
           <span className="gradient-text">Yadhunath</span>
         </h1>
 
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-zinc-400 h-9 flex items-center justify-center gap-2">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-zinc-600 dark:text-zinc-400 h-9 flex items-center justify-center gap-2">
           <span>{displayed}</span>
           <span className="w-0.5 h-7 bg-accent animate-blink" />
         </h2>
 
-        <p className="max-w-xl mx-auto text-zinc-400 text-base sm:text-lg leading-relaxed">
+        <p className="max-w-xl mx-auto text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
           CS grad student at the University of Kansas, specializing in data
           engineering and machine learning. I build systems that handle real
-          data at scale — from ETL pipelines to full-stack web apps.
+          data at scale ranging from ETL pipelines to full-stack web apps, with my current focus on
+          leveraging AI/ML to solve real-world problems.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -69,7 +84,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="px-6 py-2.5 border border-border hover:border-accent text-zinc-300 hover:text-white text-sm font-semibold rounded-lg transition-all duration-200"
+            className="px-6 py-2.5 border border-border hover:border-accent text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white text-sm font-semibold rounded-lg transition-all duration-200"
           >
             Get In Touch
           </a>
@@ -99,7 +114,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <a
         href="#about"
-        className="absolute bottom-10 text-zinc-600 hover:text-accent transition-colors animate-bounce"
+        className="absolute bottom-10 text-zinc-400 dark:text-zinc-600 hover:text-accent transition-colors animate-bounce"
         aria-label="Scroll down"
       >
         <ArrowDown size={22} />

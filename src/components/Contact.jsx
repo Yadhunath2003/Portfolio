@@ -29,7 +29,7 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto text-center">
         <Reveal><SectionHeading index="06" title="Get In Touch" /></Reveal>
 
-        <Reveal delay="delay-100"><p className="mt-8 text-zinc-400 text-base leading-relaxed">
+        <Reveal delay="delay-100"><p className="mt-8 text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
           I'm currently open to internship and full-time opportunities in data
           engineering and backend development. If you have a question, a project
           idea, or just want to connect — feel free to reach out!
@@ -58,10 +58,10 @@ export default function Contact() {
                 className="group flex flex-col items-center gap-2 p-4 bg-card border border-border rounded-xl hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
               >
                 <Icon size={20} className="text-zinc-500 group-hover:text-accent transition-colors" />
-                <span className="text-xs font-semibold text-zinc-400 group-hover:text-zinc-200 transition-colors">
+                <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 transition-colors">
                   {label}
                 </span>
-                <span className="text-xs text-zinc-600 font-mono group-hover:text-zinc-400 transition-colors truncate max-w-full px-1">
+                <span className="text-xs text-zinc-400 dark:text-zinc-600 font-mono group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors truncate max-w-full px-1">
                   {handle}
                 </span>
               </a>

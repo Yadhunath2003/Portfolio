@@ -85,7 +85,7 @@ export default function Skills() {
                     key={name || icon}
                     className="relative group/skill cursor-default"
                   >
-                    <div className="w-16 h-16 rounded-xl bg-yellow-100/90 border border-yellow-200/20 flex items-center justify-center hover:border-yellow-300/50 hover:bg-yellow-100/20 hover:scale-110 transition-all duration-200">
+                    <div className="w-16 h-16 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center hover:border-accent/40 hover:bg-zinc-200/70 hover:scale-110 transition-all duration-200">
                       <img
                         src={icon}
                         alt={name}
@@ -95,9 +95,9 @@ export default function Skills() {
                     </div>
                     {/* Tooltip */}
                     {name && (
-                      <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-zinc-800 border border-border text-zinc-200 text-xs rounded whitespace-nowrap opacity-0 group-hover/skill:opacity-100 pointer-events-none transition-opacity duration-150 z-10">
+                      <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-white dark:bg-zinc-800 border border-border text-zinc-800 dark:text-zinc-200 text-xs rounded whitespace-nowrap opacity-0 group-hover/skill:opacity-100 pointer-events-none transition-opacity duration-150 z-10 shadow-sm">
                         {name}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-800" />
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white dark:border-t-zinc-800" />
                       </div>
                     )}
                   </div>

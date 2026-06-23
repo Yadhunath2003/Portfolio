@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useTheme } from '../context/ThemeContext'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -13,6 +14,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { dark, toggle } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -31,7 +33,7 @@ export default function Navbar() {
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#"
-          className="font-mono text-accent font-medium text-lg tracking-tight hover:text-white transition-colors"
+          className="font-mono text-accent font-medium text-lg tracking-tight hover:text-accent-dim transition-colors"
         >
           &lt;Yadhunath Tharakeswaran /&gt;
         </a>
@@ -42,12 +44,24 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-zinc-400 hover:text-white transition-colors font-medium"
+                className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors font-medium"
               >
                 {link.label}
               </a>
             </li>
           ))}
+
+          {/* Theme toggle */}
+          <li>
+            <button
+              onClick={toggle}
+              aria-label="Toggle theme"
+              className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors p-1 rounded"
+            >
+              {dark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </li>
+
           <li>
             <a
               href="assets/resume.pdf"
@@ -60,14 +74,23 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-zinc-400 hover:text-white transition-colors"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile right: theme toggle + menu */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors p-1"
+          >
+            {dark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -78,7 +101,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-zinc-400 hover:text-white transition-colors"
+                  className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}

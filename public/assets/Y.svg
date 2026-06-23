@@ -1,2 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 48 48" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><path class="cls-1" d="M40.5,5.5H7.5a2,2,0,0,0-2,2v33a2,2,0,0,0,2,2h33a2,2,0,0,0,2-2V7.5A2,2,0,0,0,40.5,5.5Z"/><line class="cls-1" x1="14.98" y1="10.5" x2="24" y2="24"/><line class="cls-1" x1="33.02" y1="10.5" x2="24" y2="24"/><line class="cls-1" x1="24" y1="37.5" x2="24" y2="24"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">YT Monochrome Brand Icon</title>
+  <desc id="desc">A clean black and white YT monogram icon for professional website branding.</desc>
+  <rect x="34" y="34" width="444" height="444" rx="108" fill="#050505"/>
+  <rect x="53" y="53" width="406" height="406" rx="90" stroke="white" stroke-opacity="0.16" stroke-width="7"/>
+  <g stroke="white" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M126 145L208 246L290 145" stroke-width="48"/>
+    <path d="M208 246V368" stroke-width="48"/>
+    <path d="M292 152H404" stroke-width="48"/>
+    <path d="M348 152V368" stroke-width="48"/>
+  </g>
+</svg>

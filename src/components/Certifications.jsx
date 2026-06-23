@@ -69,7 +69,7 @@ export default function Certifications() {
             >
               {/* Header row: logo + date */}
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-lg bg-zinc-800/80 border border-border flex items-center justify-center p-1.5">
+                <div className="w-10 h-10 rounded-lg bg-zinc-100/80 dark:bg-zinc-800/80 border border-border flex items-center justify-center p-1.5">
                   <img src={cert.logo} alt={cert.issuer} className="w-full h-full object-contain" />
                 </div>
                 <span className="font-mono text-xs text-zinc-500">{cert.date}</span>
@@ -77,7 +77,7 @@ export default function Certifications() {
 
               {/* Content */}
               <div className="flex-1">
-                <h3 className="font-semibold text-zinc-100 text-sm leading-snug mb-1">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm leading-snug mb-1">
                   {cert.title}
                 </h3>
                 <p className="text-xs text-accent font-medium mb-2">{cert.issuer}</p>
@@ -109,14 +109,14 @@ export default function Certifications() {
               className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 hover:border-accent/40 transition-all duration-300 glow-hover"
             >
               {award.logo ? (
-                <div className="w-9 h-9 rounded-lg bg-zinc-800/80 border border-border flex items-center justify-center p-1.5 shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-zinc-100/80 dark:bg-zinc-800/80 border border-border flex items-center justify-center p-1.5 shrink-0">
                   <img src={award.logo} alt={award.org} className="w-full h-full object-contain" />
                 </div>
               ) : (
                 <Trophy size={18} className="text-accent shrink-0 mt-0.5" />
               )}
               <div>
-                <h3 className="font-semibold text-zinc-100 text-sm">{award.title}</h3>
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">{award.title}</h3>
                 <p className="text-xs text-accent mb-1">{award.org}</p>
                 <p className="text-xs text-zinc-500 leading-relaxed">{award.detail}</p>
               </div>

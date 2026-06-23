@@ -51,12 +51,12 @@ const featured = [
 ]
 
 const other = [
-  
+
 ]
 
 function Tag({ label }) {
   return (
-    <span className="font-mono text-xs text-zinc-400 bg-zinc-800/60 border border-border px-2 py-0.5 rounded">
+    <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/60 border border-border px-2 py-0.5 rounded">
       {label}
     </span>
   )
@@ -82,7 +82,7 @@ export default function Projects() {
                     <div>
                       <p className="font-mono text-xs text-accent mb-1">Featured Project</p>
                       <div className="flex items-center gap-3">
-                        <h3 className="text-xl font-bold text-zinc-100 group-hover:text-white">
+                        <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
                           {p.title}
                         </h3>
                         {p.ribbon && (
@@ -92,7 +92,7 @@ export default function Projects() {
                         )}
                       </div>
                     </div>
-                    <div className="flex gap-3 text-zinc-500 shrink-0">
+                    <div className="flex gap-3 text-zinc-400 dark:text-zinc-500 shrink-0">
                       {p.github && (
                         <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-accent transition-colors">
                           <Github size={18} />
@@ -105,7 +105,7 @@ export default function Projects() {
                       )}
                     </div>
                   </div>
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-5">{p.description}</p>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-5">{p.description}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {p.tags.map((t) => <Tag key={t} label={t} />)}
@@ -113,7 +113,7 @@ export default function Projects() {
               </div>
 
               {/* Screenshot — right side */}
-              <div className="sm:w-64 sm:shrink-0 h-48 sm:h-auto overflow-hidden bg-zinc-900 border-t sm:border-t-0 sm:border-l border-border">
+              <div className="sm:w-64 sm:shrink-0 h-48 sm:h-auto overflow-hidden bg-zinc-100 dark:bg-zinc-900 border-t sm:border-t-0 sm:border-l border-border">
                 <img
                   src={p.image}
                   alt={p.title}
@@ -127,7 +127,7 @@ export default function Projects() {
 
         {/* Other projects grid */}
         {other.length > 0 && <>
-        <Reveal><h3 className="text-center text-zinc-400 text-sm font-medium mt-16 mb-8">
+        <Reveal><h3 className="text-center text-zinc-500 dark:text-zinc-400 text-sm font-medium mt-16 mb-8">
           Other Noteworthy Projects
         </h3></Reveal>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -137,7 +137,7 @@ export default function Projects() {
               className="group flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 glow-hover"
             >
               {/* Thumbnail */}
-              <div className="h-36 overflow-hidden bg-zinc-900 border-b border-border">
+              <div className="h-36 overflow-hidden bg-zinc-100 dark:bg-zinc-900 border-b border-border">
                 <img
                   src={p.image}
                   alt={p.title}
@@ -147,8 +147,8 @@ export default function Projects() {
 
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="font-semibold text-zinc-100 group-hover:text-white">{p.title}</h4>
-                  <div className="flex gap-3 text-zinc-600 shrink-0 ml-2">
+                  <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">{p.title}</h4>
+                  <div className="flex gap-3 text-zinc-400 dark:text-zinc-600 shrink-0 ml-2">
                     {p.github && (
                       <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-accent transition-colors">
                         <Github size={16} />

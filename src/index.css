@@ -3,6 +3,24 @@
 @tailwind utilities;
 
 @layer base {
+  /* Light mode tokens (default) */
+  :root {
+    --background: 248 248 252;
+    --surface: 240 240 248;
+    --card: 255 255 255;
+    --border: 228 228 231;
+    --dot-color: #d4d4d8;
+  }
+
+  /* Dark mode tokens */
+  .dark {
+    --background: 9 9 11;
+    --surface: 17 17 19;
+    --card: 24 24 27;
+    --border: 39 39 42;
+    --dot-color: #27272a;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -12,8 +30,6 @@
   }
 
   body {
-    background-color: #09090b;
-    color: #fafafa;
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -29,11 +45,11 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #09090b;
+    background: rgb(var(--background));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #27272a;
+    background: rgb(var(--border));
     border-radius: 3px;
   }
 
@@ -43,7 +59,16 @@
 }
 
 @layer utilities {
+  /* Light mode gradient (dark navy → indigo → violet) */
   .gradient-text {
+    background: linear-gradient(135deg, #1e1b4b 0%, #6366f1 50%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Dark mode gradient (light slate → indigo → purple) */
+  .dark .gradient-text {
     background: linear-gradient(135deg, #e2e8f0 0%, #6366f1 50%, #a855f7 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,7 +79,13 @@
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
   }
 
+  /* Light mode: soft indigo glow */
   .glow-hover:hover {
-    box-shadow: 0 0 30px rgba(218, 240, 93, 0.902);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+  }
+
+  /* Dark mode: accent lime glow */
+  .dark .glow-hover:hover {
+    box-shadow: 0 0 30px rgba(218, 240, 93, 0.25);
   }
 }

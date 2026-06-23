@@ -1,7 +1,10 @@
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
+import { useTheme } from '../context/ThemeContext'
 
 export default function About() {
+  const { dark } = useTheme()
+
   return (
     <section id="about" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
@@ -9,20 +12,19 @@ export default function About() {
 
         <div className="mt-12 grid md:grid-cols-5 gap-12 items-start">
           {/* Text */}
-          <Reveal from="left" className="md:col-span-3 space-y-5 text-zinc-400 text-base leading-relaxed">
+          <Reveal from="left" className="md:col-span-3 space-y-5 text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
             <p>
-              Hi — I'm Yadhunath, a first-year Master's student in Computer
-              Science at the{' '}
-              <span className="text-zinc-200 font-medium">University of Kansas</span>
+              Hi! I'm Yadhunath, pursuing a Master's student in Computer
+              Science and with a Bachelors in Computer Science at the{' '}
+              <span className="text-zinc-800 dark:text-zinc-200 font-medium">University of Kansas</span>
               , specializing in{' '}
-              <span className="text-zinc-200 font-medium">Data Science and Engineering</span>
-              . I'm currently seeking internship opportunities in data
-              engineering and backend-focused roles.
+              <span className="text-zinc-800 dark:text-zinc-200 font-medium">Data Science and Engineering</span>
+              . I'm currently seeking internship opportunities in data science, data engineering and backend-focused roles.
             </p>
             <p>
               I have hands-on experience working across data pipelines, backend
               systems, and analytics workflows. I enjoy building systems that
-              handle real data at scale and remain reliable in production —
+              handle real data at scale and remain reliable in production,
               whether that's an ETL pipeline, a REST API, or a real-time
               streaming system.
             </p>
@@ -31,7 +33,7 @@ export default function About() {
               and occasionally mentor students through camps and TA sessions.
             </p>
 
-            <ul className="grid grid-cols-2 gap-2 pt-2 font-mono text-sm text-zinc-400">
+            <ul className="grid grid-cols-2 gap-2 pt-2 font-mono text-sm text-zinc-600 dark:text-zinc-400">
               {[
                 'Python', 'JavaScript / R',
                 'React / Next.js', 'Django / Node.js',
@@ -51,7 +53,7 @@ export default function About() {
             <div className="relative group">
               <div className="w-64 h-64 rounded-2xl border border-border overflow-hidden">
                 <img
-                  src="/assets/Profile_pic.jpg"
+                  src={dark ? '/assets/yt_dark.png' : '/assets/yt_light.jpg'}
                   alt="Yadhunath Tharakeswaran"
                   className="w-full h-full object-cover object-top"
                 />
