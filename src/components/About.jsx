@@ -1,6 +1,5 @@
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
-import { useTheme } from '../context/ThemeContext'
 
 // Synced with public/assets/resume.pdf
 const education = [
@@ -29,12 +28,10 @@ const focusAreas = [
 ]
 
 export default function About() {
-  const { dark } = useTheme()
-
   return (
     <section id="about" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <Reveal><SectionHeading index="01" title="About Me" /></Reveal>
+        <Reveal><SectionHeading index="01" title="About" accent="me" /></Reveal>
 
         <div className="mt-12 grid md:grid-cols-5 gap-12 items-start">
           {/* Text */}
@@ -57,9 +54,7 @@ export default function About() {
               emergency responders.
             </p>
             <p>
-              I'm currently a Graduate Teaching Assistant for Embedded Systems
-              and Programming Paradigms, where I lead labs and help design
-              course content. I'm looking for internship and full-time
+              I'm looking for internship and full-time
               opportunities in data engineering, data science, machine
               learning, and backend development.
             </p>
@@ -85,7 +80,7 @@ export default function About() {
                     <span className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-background" />
                     <p className="font-mono text-xs text-zinc-500">{e.period}</p>
                     <p className="text-zinc-900 dark:text-zinc-100 font-semibold text-sm mt-0.5">
-                      {e.degree}{' '}
+                      <span className="font-display italic font-normal text-lg">{e.degree}</span>{' '}
                       <span className="text-accent font-medium">@ {e.school}</span>
                     </p>
                     <p className="text-sm text-zinc-500">
@@ -102,7 +97,7 @@ export default function About() {
             <div className="relative group">
               <div className="w-64 h-64 rounded-2xl border border-border overflow-hidden">
                 <img
-                  src={dark ? '/assets/yt_dark.png' : '/assets/yt_light.jpg'}
+                  src="/assets/yt_dark.png"
                   alt="Yadhunath Tharakeswaran"
                   className="w-full h-full object-cover object-center"
                 />

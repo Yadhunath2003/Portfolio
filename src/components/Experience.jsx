@@ -1,6 +1,8 @@
+import { useEffect, useRef, useState } from 'react'
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
 
+// Scroll-drawn timeline adapted from "Scroll animated timeline" by ibrandify on 21st.dev (MIT).
 const jobs = [
   {
     title: 'Graduate Teaching Assistant',
@@ -52,54 +54,120 @@ const jobs = [
   },
 ]
 
+function useTimelineProgress(ref) {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setProgress(1)
+      return
+    }
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const el = ref.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      // The line reaches a point when it crosses the middle of the screen.
+      const p = (window.innerHeight / 2 - rect.top) / rect.height
+      setProgress(Math.max(0, Math.min(1, p)))
+    }
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [ref])
+
+  return progress
+}
+
 export default function Experience() {
+  const timelineRef = useRef(null)
+  const progress = useTimelineProgress(timelineRef)
+
   return (
     <section id="experience" className="py-24 px-6 bg-surface">
-      <div className="max-w-4xl mx-auto">
-        <Reveal><SectionHeading index="02" title="Experience" /></Reveal>
+      <div className="max-w-5xl mx-auto">
+        <Reveal><SectionHeading index="02" title="Where I've" accent="worked" /></Reveal>
 
-        <div className="mt-12">
-          <div className="space-y-6">
-            {jobs.map((job, i) => (
-              <Reveal key={i} delay={i * 100}>
-              <div
-                className="group relative bg-card border border-border rounded-xl p-6 hover:border-accent/40 transition-all duration-300 glow-hover"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                      {job.title}{' '}
-                      <span className="text-accent">
-                        @{' '}
-                        <a
-                          href={job.companyUrl}
-                          className="hover:underline underline-offset-2"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {job.company}
-                        </a>
-                      </span>
-                    </h3>
-                    <p className="text-sm text-zinc-500">{job.location}</p>
+        <div ref={timelineRef} className="relative mt-16">
+          {/* Faded track */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
+          {/* Line that draws as you scroll */}
+          <div
+            className="absolute left-4 md:left-1/2 top-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-accent to-accent-dim transition-[height] duration-100 ease-out"
+            style={{ height: `${progress * 100}%` }}
+          />
+
+          <ol className="relative flex flex-col gap-14 md:gap-20">
+            {jobs.map((job, i) => {
+              const threshold = i / (jobs.length - 1 || 1)
+              const active = progress >= threshold - 0.05
+              const left = i % 2 === 0 // even items sit on the left (desktop)
+
+              return (
+                <li
+                  key={job.title}
+                  className={`relative flex flex-col md:flex-row ${left ? 'md:flex-row-reverse' : ''} items-start`}
+                >
+                  {/* Dot */}
+                  <span
+                    className={`absolute left-4 md:left-1/2 top-6 size-4 -translate-x-1/2 rounded-full border-2 transition-all duration-500 z-10 ${
+                      active
+                        ? 'border-accent bg-background scale-125 shadow-[0_0_12px_rgba(137,170,204,0.6)]'
+                        : 'border-border bg-zinc-800 scale-100'
+                    }`}
+                  />
+
+                  {/* Empty half pushes the card to one side on desktop */}
+                  <div className="hidden md:block md:w-1/2" />
+
+                  <div
+                    className={`w-full md:w-1/2 pl-12 ${left ? 'md:pl-0 md:pr-12' : 'md:pl-12'} transition-all duration-700 ease-out ${
+                      active ? 'opacity-100 translate-y-0' : 'opacity-30 translate-y-8'
+                    }`}
+                  >
+                    <div className={`bg-card border border-border rounded-2xl p-6 transition-colors duration-500 ${active ? 'border-accent/30' : ''}`}>
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span className="font-mono text-xs tracking-widest text-zinc-400 bg-zinc-900 border border-border px-3 py-1 rounded-full">
+                          {job.period}
+                        </span>
+                        <span className="text-xs text-zinc-500">{job.location}</span>
+                      </div>
+
+                      <h3 className="font-display italic text-2xl sm:text-3xl leading-tight text-zinc-100">
+                        {job.title}
+                      </h3>
+                      <a
+                        href={job.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 inline-block text-sm font-medium text-accent hover:underline underline-offset-2"
+                      >
+                        @ {job.company}
+                      </a>
+
+                      <ul className="mt-4 space-y-2">
+                        {job.bullets.map((b) => (
+                          <li key={b} className="flex gap-3 text-sm text-zinc-400 leading-relaxed">
+                            <span className="text-accent mt-0.5 shrink-0">▹</span>
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <span className="font-mono text-xs text-zinc-500 whitespace-nowrap bg-zinc-100 dark:bg-zinc-800/60 px-3 py-1 rounded-full border border-border">
-                    {job.period}
-                  </span>
-                </div>
-
-                <ul className="space-y-2">
-                  {job.bullets.map((b, j) => (
-                    <li key={j} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                      <span className="text-accent mt-1 shrink-0">▹</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              </Reveal>
-            ))}
-          </div>
+                </li>
+              )
+            })}
+          </ol>
         </div>
       </div>
     </section>

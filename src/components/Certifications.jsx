@@ -58,7 +58,7 @@ export default function Certifications() {
   return (
     <section id="certifications" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <Reveal><SectionHeading index="05" title="Certifications & Awards" /></Reveal>
+        <Reveal><SectionHeading index="05" title="Certifications &" accent="awards" /></Reveal>
 
         {/* Certifications */}
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

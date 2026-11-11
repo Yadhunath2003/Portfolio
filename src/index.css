@@ -3,52 +3,35 @@
 @tailwind utilities;
 
 @layer base {
-  /* Light mode tokens (default) */
+  /*
+   * Dark-only palette (inspired by the Hirael portfolio template).
+   * Values are space-separated RGB so Tailwind can apply opacity: bg-card/70.
+   * <html> always carries the `dark` class, so existing dark: variants stay active.
+   */
   :root {
-    --background: 248 248 252;
-    --surface: 240 240 248;
-    --card: 255 255 255;
-    --border: 228 228 231;
-    --dot-color: #d4d4d8;
+    --background: 10 10 10;            /* hsl(0 0% 4%)  */
+    --surface: 15 15 15;               /* alternating sections */
+    --card: 20 20 20;                  /* hsl(0 0% 8%)  */
+    --border: 31 31 31;                /* hsl(0 0% 12%) */
+    --dot-color: #1f1f1f;
 
-    /* shadcn / 21st.dev aliases (space-separated RGB, used as rgb(var(--x) / alpha)) */
-    --foreground: 24 24 27;            /* zinc-900 */
-    --muted: 244 244 245;              /* zinc-100 */
-    --muted-foreground: 113 113 122;   /* zinc-500 */
-    --primary: 99 102 241;             /* indigo-500 = accent */
-    --primary-foreground: 255 255 255;
-    --secondary: 240 240 248;          /* = surface */
-    --secondary-foreground: 24 24 27;
-    --accent-foreground: 255 255 255;
-    --popover: 255 255 255;
-    --destructive: 239 68 68;          /* red-500 */
-    --destructive-foreground: 255 255 255;
-    --input: 228 228 231;              /* = border */
-    --ring: 99 102 241;                /* = accent */
-    --radius: 0.5rem;
-  }
-
-  /* Dark mode tokens */
-  .dark {
-    --background: 9 9 11;
-    --surface: 17 17 19;
-    --card: 24 24 27;
-    --border: 39 39 42;
-    --dot-color: #27272a;
-
-    --foreground: 244 244 245;         /* zinc-100 */
-    --muted: 39 39 42;                 /* zinc-800 */
-    --muted-foreground: 161 161 170;   /* zinc-400 */
-    --primary: 99 102 241;
-    --primary-foreground: 255 255 255;
-    --secondary: 39 39 42;
-    --secondary-foreground: 244 244 245;
-    --accent-foreground: 255 255 255;
-    --popover: 24 24 27;               /* = card */
+    /* shadcn / 21st.dev aliases */
+    --foreground: 245 245 245;         /* hsl(0 0% 96%) */
+    --muted: 31 31 31;
+    --muted-foreground: 135 135 135;   /* hsl(0 0% 53%) */
+    --primary: 137 170 204;            /* #89AACC = accent */
+    --primary-foreground: 10 10 10;
+    --secondary: 31 31 31;
+    --secondary-foreground: 245 245 245;
+    --accent-foreground: 10 10 10;
+    --popover: 20 20 20;
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
-    --input: 39 39 42;
-    --ring: 99 102 241;
+    --input: 31 31 31;
+    --ring: 137 170 204;
+    --radius: 0.5rem;
+
+    color-scheme: dark;
   }
 
   * {
@@ -66,7 +49,7 @@
   }
 
   ::selection {
-    background-color: #6366f1;
+    background-color: #4e85bf;
     color: #fff;
   }
 
@@ -84,38 +67,43 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #6366f1;
+    background: #89aacc;
   }
 }
 
 @layer utilities {
-  /* Light mode gradient (dark navy → indigo → violet) */
-  .gradient-text {
-    background: linear-gradient(135deg, #1e1b4b 0%, #6366f1 50%, #7c3aed 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Blue accent gradient used for rings, lines and highlights */
+  .accent-gradient {
+    background-image: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
   }
 
-  /* Dark mode gradient (light slate → indigo → purple) */
-  .dark .gradient-text {
-    background: linear-gradient(135deg, #e2e8f0 0%, #6366f1 50%, #a855f7 100%);
+  /* Light → soft blue text gradient */
+  .gradient-text {
+    background: linear-gradient(135deg, #f5f5f5 0%, #89aacc 55%, #4e85bf 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .glow {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 20px rgba(137, 170, 204, 0.12);
   }
 
-  /* Light mode: soft indigo glow */
   .glow-hover:hover {
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 30px rgba(137, 170, 204, 0.15);
   }
+}
 
-  /* Dark mode: stronger indigo glow */
-  .dark .glow-hover:hover {
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.25);
+@media (prefers-reduced-motion: reduce) {
+  .animate-blur-in,
+  .animate-name-reveal,
+  .animate-role-fade-in,
+  .animate-scroll-down,
+  .animate-drift,
+  .animate-drift-slow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }

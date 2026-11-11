@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Menu, X, Sun, Moon } from 'lucide-react'
-import { useTheme } from '../context/ThemeContext'
+import { Menu, X } from 'lucide-react'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -14,7 +13,6 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const { dark, toggle } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -51,38 +49,20 @@ export default function Navbar() {
             </li>
           ))}
 
-          {/* Theme toggle */}
-          <li>
-            <button
-              onClick={toggle}
-              aria-label="Toggle theme"
-              className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors p-1 rounded"
-            >
-              {dark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </li>
-
           <li>
             <a
               href="/assets/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-white transition-all duration-200"
+              className="text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-background transition-all duration-200"
             >
               Resume
             </a>
           </li>
         </ul>
 
-        {/* Mobile right: theme toggle + menu */}
+        {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-3">
-          <button
-            onClick={toggle}
-            aria-label="Toggle theme"
-            className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors p-1"
-          >
-            {dark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
           <button
             className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
             onClick={() => setOpen(!open)}
@@ -113,7 +93,7 @@ export default function Navbar() {
                 href="/assets/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-white transition-all duration-200"
+                className="inline-block text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-background transition-all duration-200"
               >
                 Resume
               </a>

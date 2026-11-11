@@ -27,7 +27,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6 bg-surface">
       <div className="max-w-2xl mx-auto text-center">
-        <Reveal><SectionHeading index="06" title="Get In Touch" /></Reveal>
+        <Reveal><SectionHeading index="06" title="Get in" accent="touch" className="flex flex-col items-center" /></Reveal>
 
         <Reveal delay={100}><p className="mt-8 text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
           I'm currently open to internship and full-time opportunities in data
@@ -38,7 +38,7 @@ export default function Contact() {
         <Reveal delay={200}>
         <a
           href="mailto:yadhunath2003@gmail.com"
-          className="inline-block mt-8 px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-white font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-accent/10 hover:shadow-accent/25"
+          className="inline-block mt-8 px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-background font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-accent/10 hover:shadow-accent/25"
         >
           Say Hello
         </a>
