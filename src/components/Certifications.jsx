@@ -63,7 +63,7 @@ export default function Certifications() {
         {/* Certifications */}
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {certifications.map((cert, i) => (
-            <Reveal key={cert.title} delay={`delay-[${i * 100}ms]`}>
+            <Reveal key={cert.title} delay={i * 100}>
             <div
               className={`group bg-gradient-to-br ${cert.glow} bg-card border border-border rounded-xl p-5 ${cert.accent} transition-all duration-300 glow-hover flex flex-col gap-3`}
             >
@@ -104,7 +104,7 @@ export default function Certifications() {
         {/* Awards */}
         <div className="mt-10 space-y-4">
           {awards.map((award, i) => (
-            <Reveal key={award.title} delay={`delay-[${i * 100}ms]`}>
+            <Reveal key={award.title} delay={i * 100}>
             <div
               className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 hover:border-accent/40 transition-all duration-300 glow-hover"
             >

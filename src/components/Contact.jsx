@@ -29,13 +29,13 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto text-center">
         <Reveal><SectionHeading index="06" title="Get In Touch" /></Reveal>
 
-        <Reveal delay="delay-100"><p className="mt-8 text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
+        <Reveal delay={100}><p className="mt-8 text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
           I'm currently open to internship and full-time opportunities in data
           engineering and backend development. If you have a question, a project
           idea, or just want to connect — feel free to reach out!
         </p></Reveal>
 
-        <Reveal delay="delay-200">
+        <Reveal delay={200}>
         <a
           href="mailto:yadhunath2003@gmail.com"
           className="inline-block mt-8 px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-white font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-accent/10 hover:shadow-accent/25"
@@ -45,12 +45,12 @@ export default function Contact() {
         </Reveal>
 
         {/* Divider */}
-        <Reveal delay="delay-300"><div className="mt-14 h-px bg-border" /></Reveal>
+        <Reveal delay={300}><div className="mt-14 h-px bg-border" /></Reveal>
 
         {/* Social links */}
         <div className="mt-10 grid grid-cols-3 gap-4">
           {socials.map(({ icon: Icon, label, href, handle }, i) => (
-            <Reveal key={label} delay={`delay-[${i * 100 + 400}ms]`}>
+            <Reveal key={label} delay={i * 100 + 400}>
               <a
                 href={href}
                 target="_blank"

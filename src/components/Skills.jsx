@@ -27,6 +27,7 @@ const skillGroups = [
     category: 'Backend & Databases',
     skills: [
       { name: 'Django',       icon: `${DEVICON}/django/django-plain.svg` },
+      { name: 'FastAPI',      icon: `${DEVICON}/fastapi/fastapi-original.svg` },
       { name: 'Node.js',      icon: `${DEVICON}/nodejs/nodejs-original.svg` },
       { name: 'PostgreSQL',   icon: `${DEVICON}/postgresql/postgresql-original.svg` },
       { name: 'MySQL',        icon: `${DEVICON}/mysql/mysql-original.svg` },
@@ -46,6 +47,7 @@ const skillGroups = [
   {
     category: 'ML / AI',
     skills: [
+      { name: 'PyTorch',      icon: `${DEVICON}/pytorch/pytorch-original.svg` },
       { name: 'scikit-learn', icon: `${DEVICON}/scikitlearn/scikitlearn-original.svg` },
       { name: 'Pandas',       icon: `${DEVICON}/pandas/pandas-original.svg` },
       { name: 'NumPy',        icon: `${DEVICON}/numpy/numpy-original.svg` },
@@ -58,7 +60,7 @@ const skillGroups = [
       { name: 'AWS',            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
       { name: 'Docker',         icon: `${DEVICON}/docker/docker-original.svg` },
       { name: 'Vercel',         icon: `${DEVICON}/vercel/vercel-original.svg` },
-      { name: 'GitHub Actions', icon: `${DEVICON}/github/github-original.svg` },
+      { name: 'Git',            icon: `${DEVICON}/git/git-original.svg` },
       { name: 'Kali Linux',     icon: `${DEVICON}/linux/linux-original.svg` },
     ],
   },
@@ -72,7 +74,7 @@ export default function Skills() {
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {skillGroups.map((group, i) => (
-            <Reveal key={group.category} delay={`delay-[${i * 75}ms]`}>
+            <Reveal key={group.category} delay={i * 75}>
             <div
               className="bg-card border border-border rounded-xl p-5 hover:border-accent/40 transition-all duration-300 glow-hover"
             >
@@ -85,7 +87,7 @@ export default function Skills() {
                     key={name || icon}
                     className="relative group/skill cursor-default"
                   >
-                    <div className="w-16 h-16 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center hover:border-accent/40 hover:bg-zinc-200/70 hover:scale-110 transition-all duration-200">
+                    <div className="w-16 h-16 rounded-xl bg-zinc-100 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center hover:border-accent/40 hover:bg-zinc-200/70 dark:hover:bg-zinc-700/60 hover:scale-110 transition-all duration-200">
                       <img
                         src={icon}
                         alt={name}

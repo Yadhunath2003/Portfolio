@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowDown, FileText, Github, Linkedin, Mail } from 'lucide-react'
 
 const roles = [
   'Data Engineer',
-  'Full-Stack Developer',
-  'ML / AI Developer',
-  'CS Graduate Student @ KU',
+  'Machine Learning Engineer',
+  'Backend Developer',
+  'M.S. CS @ University of Kansas',
 ]
 
 export default function Hero() {
@@ -55,6 +55,17 @@ export default function Hero() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl w-full text-center space-y-6 animate-fade-up">
+        <a
+          href="#contact"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 backdrop-blur px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 hover:border-accent/40 transition-colors"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          Open to internships &amp; full-time roles
+        </a>
+
         <p className="font-mono text-accent text-sm tracking-widest uppercase">
           &gt; Hello, world. I am
         </p>
@@ -69,10 +80,10 @@ export default function Hero() {
         </h2>
 
         <p className="max-w-xl mx-auto text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
-          CS grad student at the University of Kansas, specializing in data
-          engineering and machine learning. I build systems that handle real
-          data at scale ranging from ETL pipelines to full-stack web apps, with my current focus on
-          leveraging AI/ML to solve real-world problems.
+          Thesis-track Master&apos;s student in Computer Science at the University
+          of Kansas, specializing in Data Science &amp; Engineering. I build data
+          pipelines, machine learning models, and backend systems, from ETL
+          workflows to a hackathon-winning, real-time AI app for first responders.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -87,6 +98,15 @@ export default function Hero() {
             className="px-6 py-2.5 border border-border hover:border-accent text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white text-sm font-semibold rounded-lg transition-all duration-200"
           >
             Get In Touch
+          </a>
+          <a
+            href="/assets/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 text-zinc-700 dark:text-zinc-300 hover:text-accent text-sm font-semibold rounded-lg transition-colors duration-200"
+          >
+            <FileText size={16} />
+            Resume
           </a>
         </div>
 

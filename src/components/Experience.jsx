@@ -9,9 +9,9 @@ const jobs = [
     period: 'Jan 2026 — Present',
     location: 'Lawrence, KS',
     bullets: [
-      'Assist in teaching hands-on lab courses in Embedded Systems and C programming.',
-      'Guide students in implementing projects using Arduino, Raspberry Pi, and other embedded devices.',
-      'Foster a collaborative learning environment to enhance student engagement and understanding.',
+      'Lead lab sections and discussion sessions for Embedded Systems & Programming Paradigms courses.',
+      'Collaborate with professors to design lecture content and lab assignments.',
+      'Guide students through hands-on exercises while providing real-time debugging support.',
     ],
   },
   {
@@ -21,9 +21,9 @@ const jobs = [
     period: 'Jul 2025 — Dec 2025',
     location: 'Lawrence, KS',
     bullets: [
-      'Maintained and updated graduate program databases in FileMaker Pro to keep student records accurate and consistent.',
-      'Developed scripts to automate course substitutions, grade tracking, and reporting, reducing manual workload.',
-      'Partnered with faculty and staff to implement data management improvements that streamlined workflows.',
+      'Automated course-substitution, grade-tracking, and reporting workflows using custom FileMaker Pro scripts.',
+      'Reduced manual administrative effort by 30% through workflow automation.',
+      'Maintained relational databases for 100+ graduate students, improving data accuracy.',
     ],
   },
   {
@@ -45,9 +45,9 @@ const jobs = [
     period: 'May 2024 — Jul 2025',
     location: 'Lawrence, KS',
     bullets: [
-      'Documented workflows and built knowledge-sharing resources in TDX and ServiceNow to improve support consistency.',
-      'Troubleshot hardware and software issues across organizational and personal machines, closing tickets efficiently.',
-      'Provided secure, reliable support for Microsoft 365, KU services, and account access.',
+      'Diagnosed and resolved 50+ weekly hardware, software, and Microsoft 365 tickets.',
+      'Sustained a 95%+ resolution rate across TDX and ServiceNow platforms.',
+      'Delivered accurate documentation with minimal escalations to leadership.',
     ],
   },
 ]
@@ -61,7 +61,7 @@ export default function Experience() {
         <div className="mt-12">
           <div className="space-y-6">
             {jobs.map((job, i) => (
-              <Reveal key={i} delay={`delay-[${i * 100}ms]`}>
+              <Reveal key={i} delay={i * 100}>
               <div
                 className="group relative bg-card border border-border rounded-xl p-6 hover:border-accent/40 transition-all duration-300 glow-hover"
               >

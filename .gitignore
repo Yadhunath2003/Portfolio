@@ -3,3 +3,5 @@
 /dist
 /.env.local
 package-lock.json
+# Local design notes
+DESIGN.md

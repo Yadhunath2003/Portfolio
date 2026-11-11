@@ -4,12 +4,12 @@ import Reveal from './Reveal'
 
 const featured = [
   {
-    title: 'CCAD AI',
+    title: 'FirstResponseAI',
     description:
-      'An award-winning AI project that turns every radio transmission into structured intelligence to provide live summaries, conflict alerts, and tactical maps, automatically, so commanders see the full picture instantly.',
+      'A voice-first incident command app for emergency responders. A Next.js frontend and FastAPI backend use Gemini for AI-powered dispatch parsing and ElevenLabs for real-time voice synthesis across phone and operator views. Won Best Use of ElevenLabs at HackKU 2026.',
     image: '/assets/ccad.png',
-    tags: ['Next.js', 'Gemini API', 'ElevenLabs API', 'WebSockets', 'SQLlite', 'Hackathon winner'],
-    ribbon: 'Hackathon winner',
+    tags: ['Next.js', 'FastAPI', 'Gemini API', 'ElevenLabs API', 'WebSockets'],
+    ribbon: 'Hackathon Winner',
     github: 'https://github.com/Yadhunath2003/FirstResponseAI',
     live: 'https://devpost.com/software/firstresponse-ai-4us081'
   },
@@ -34,9 +34,9 @@ const featured = [
   {
     title: 'Cyclistic Data Analysis',
     description:
-      'A case study analyzing 1M+ bike-share rides to identify membership growth opportunities, using R, PostgreSQL, and Tableau for end-to-end analytics.',
+      'Cleaned and analyzed 800,000+ bike-share ride records with PostgreSQL and Excel, then built SQL queries, R visualizations, and a Tableau dashboard comparing casual riders and members to support subscriber-conversion strategy.',
     image: '/assets/cyclistic.png',
-    tags: ['R', 'PostgreSQL', 'Tableau'],
+    tags: ['R', 'PostgreSQL', 'SQL', 'Tableau'],
     github: 'https://www.kaggle.com/code/yadhunath/cyclistic-dataset',
   },
   {
@@ -71,7 +71,7 @@ export default function Projects() {
         {/* Featured */}
         <div className="mt-12 space-y-8">
           {featured.map((p, i) => (
-            <Reveal key={i} from={i % 2 === 0 ? 'left' : 'right'} delay={`delay-[${i * 100}ms]`}>
+            <Reveal key={i} from={i % 2 === 0 ? 'left' : 'right'} delay={i * 100}>
             <div
               className="group relative bg-card border border-border rounded-xl overflow-hidden hover:border-accent/40 transition-all duration-300 glow-hover flex flex-col sm:flex-row"
             >
@@ -132,7 +132,7 @@ export default function Projects() {
         </h3></Reveal>
         <div className="grid sm:grid-cols-2 gap-4">
           {other.map((p, i) => (
-            <Reveal key={i} delay={`delay-[${i * 100}ms]`}>
+            <Reveal key={i} delay={i * 100}>
             <div
               className="group flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 glow-hover"
             >
