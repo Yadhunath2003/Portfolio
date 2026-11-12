@@ -37,26 +37,23 @@ export default function About() {
           {/* Text */}
           <Reveal from="left" className="md:col-span-3 space-y-5 text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
             <p>
-              Hi! I'm Yadhunath, a thesis-track Master's student in Computer
-              Science at the{' '}
-              <span className="text-zinc-800 dark:text-zinc-200 font-medium">University of Kansas</span>
-              , specializing in{' '}
+              I'm Yadhunath, a Computer Science Master's student at the{' '}
+              <span className="text-zinc-800 dark:text-zinc-200 font-medium">University of Kansas</span>{' '}
+              specializing in{' '}
               <span className="text-zinc-800 dark:text-zinc-200 font-medium">Data Science and Engineering</span>
-              . I completed my Bachelor's in Computer Science with a
-              Cybersecurity Certification at KU in December 2025.
+              . I'm passionate about building scalable, data-driven systems and
+              pursuing a career in Data Engineering, Data Science, Machine
+              Learning, or Backend Development.
             </p>
             <p>
-              I like building systems that handle real data and hold up in
-              production: ETL pipelines, REST APIs, machine learning models,
-              and real-time apps. Most recently, my team won{' '}
-              <span className="text-zinc-800 dark:text-zinc-200 font-medium">Best Use of ElevenLabs at HackKU 2026</span>{' '}
-              with FirstResponseAI, a voice-first incident command app for
-              emergency responders.
+              My experience spans data pipelines, APIs, and ML applications,
+              including FirstResponseAI, which earned{' '}
+              <span className="text-zinc-800 dark:text-zinc-200 font-medium">Best Use of ElevenLabs at HackKU 2026</span>
+              .
             </p>
             <p>
-              I'm looking for internship and full-time
-              opportunities in data engineering, data science, machine
-              learning, and backend development.
+              I'm actively seeking internship and full-time opportunities to
+              apply my skills and build impactful solutions.
             </p>
 
             {/* Focus areas */}
@@ -97,7 +94,7 @@ export default function About() {
             <div className="relative group">
               <div className="w-64 h-64 rounded-2xl border border-border overflow-hidden">
                 <img
-                  src="/assets/yt_dark.png"
+                  src="/assets/yt_photo.jpg"
                   alt="Yadhunath Tharakeswaran"
                   className="w-full h-full object-cover object-center"
                 />

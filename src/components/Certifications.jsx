@@ -1,6 +1,7 @@
-import { Trophy, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
+import AwardsCarousel from './AwardsCarousel'
 
 const certifications = [
   {
@@ -27,30 +28,36 @@ const certifications = [
   },
 ]
 
+// Shown in the colorful AwardsCarousel. `color` = slide background, `dark` = dark text.
 const awards = [
+  {
+    title: 'HackKU 2026 — Best Use of ElevenLabs API',
+    org: 'University of Kansas',
+    logo: '/assets/Ku-logo.svg',
+    detail: 'Won Best Use of ElevenLabs API for creating a real-time AI communication platform in a 36-hour hackathon.',
+    color: '#FF9F0A',
+    dark: true,
+  },
   {
     title: 'University Excellence Award',
     org: 'KU School of Engineering',
     logo: '/assets/Ku-logo.svg',
     detail: 'Awarded for achieving a GPA of 3.75+ in Spring & Fall 2025 semesters.',
+    color: '#2F6FE0',
   },
   {
     title: 'Honors Roll for Academic Excellence',
     org: 'Johnson County Community College',
     logo: null,
     detail: 'Awarded for achieving a GPA of 3.5+ over 2 semesters while completing 30+ credit hours.',
+    color: '#7A5FC0',
   },
   {
     title: 'AMATY Mathematics Competition — 4th Place',
     org: 'Johnson County Community College',
     logo: null,
     detail: 'Placed 4th among 100+ participants in the AMATY Mathematics Competition.',
-  },
-  {
-    title: 'HackKU 2026 — Best Use of ElevenLabs API',
-    org: 'University of Kansas',
-    logo: '/assets/Ku-logo.svg',
-    detail: 'Won Best Use of ElevenLabs API for creating a real-time AI communication platform in a 36-hour hackathon.',
+    color: '#2FA855',
   },
 ]
 
@@ -102,28 +109,13 @@ export default function Certifications() {
         </div>
 
         {/* Awards */}
-        <div className="mt-10 space-y-4">
-          {awards.map((award, i) => (
-            <Reveal key={award.title} delay={i * 100}>
-            <div
-              className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 hover:border-accent/40 transition-all duration-300 glow-hover"
-            >
-              {award.logo ? (
-                <div className="w-9 h-9 rounded-lg bg-zinc-100/80 dark:bg-zinc-800/80 border border-border flex items-center justify-center p-1.5 shrink-0">
-                  <img src={award.logo} alt={award.org} className="w-full h-full object-contain" />
-                </div>
-              ) : (
-                <Trophy size={18} className="text-accent shrink-0 mt-0.5" />
-              )}
-              <div>
-                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">{award.title}</h3>
-                <p className="text-xs text-accent mb-1">{award.org}</p>
-                <p className="text-xs text-zinc-500 leading-relaxed">{award.detail}</p>
-              </div>
-            </div>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={100}>
+          <div className="mt-16 mb-6 flex items-center gap-3">
+            <span className="h-px w-8 bg-border" />
+            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500">Awards</h3>
+          </div>
+          <AwardsCarousel awards={awards} />
+        </Reveal>
       </div>
     </section>
   )

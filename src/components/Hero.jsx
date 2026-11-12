@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react'
 import RingLink from './RingLink'
+import Starfield from './Starfield'
 
 // Hero layout and motion adapted from the Hirael portfolio template (MIT).
 const roles = [
@@ -9,7 +10,37 @@ const roles = [
   'Backend Developer',
   'M.S. CS @ University of Kansas',
 ]
-const ROLE_INTERVAL = 2200
+
+/** Original typewriter: type each role, hold, erase, move to the next. */
+function useTypewriter(words, { type = 60, hold = 2000, erase = 35 } = {}) {
+  const [index, setIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [deleting, setDeleting] = useState(false)
+  const reduce =
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  useEffect(() => {
+    const word = words[index]
+    let t
+    if (reduce) {
+      // No typing animation: show each whole role, swapping every few seconds.
+      setText(word)
+      t = setTimeout(() => setIndex((i) => (i + 1) % words.length), hold + 1000)
+    } else if (!deleting && text.length < word.length) {
+      t = setTimeout(() => setText(word.slice(0, text.length + 1)), type)
+    } else if (!deleting) {
+      t = setTimeout(() => setDeleting(true), hold)
+    } else if (text.length > 0) {
+      t = setTimeout(() => setText(text.slice(0, -1)), erase)
+    } else {
+      setDeleting(false)
+      setIndex((i) => (i + 1) % words.length)
+    }
+    return () => clearTimeout(t)
+  }, [text, deleting, index, words, reduce, type, hold, erase])
+
+  return text
+}
 
 const socials = [
   { icon: Github, href: 'https://github.com/Yadhunath2003', label: 'GitHub' },
@@ -21,12 +52,7 @@ const socials = [
 const stagger = (i) => ({ animationDelay: `${300 + i * 100}ms` })
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => setRoleIndex((i) => (i + 1) % roles.length), ROLE_INTERVAL)
-    return () => clearInterval(id)
-  }, [])
+  const typed = useTypewriter(roles)
 
   return (
     <section
@@ -44,32 +70,27 @@ export default function Hero() {
         }}
       />
 
+      {/* Orbiting starfield (designali-in, 21st.dev) */}
+      <Starfield starEscapeWidth={420} />
+
       {/* Drifting orbs + center glow */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none animate-drift" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-dim/10 rounded-full blur-3xl pointer-events-none animate-drift-slow" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] max-w-full h-[300px] bg-white/[0.03] rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full">
-        <span
-          className="animate-blur-in mb-8 text-xs uppercase tracking-[0.3em] text-zinc-500"
-          style={stagger(0)}
-        >
-          Data · Machine Learning · Backend
-        </span>
-
         <h1 className="animate-name-reveal mb-6 font-display italic text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight text-zinc-100">
           Yadhunath
         </h1>
 
-        <p className="animate-blur-in mb-5 text-lg sm:text-xl text-zinc-200" style={stagger(1)}>
-          A{' '}
-          <span
-            key={roleIndex}
-            className="animate-role-fade-in inline-block font-display italic text-accent"
-          >
-            {roles[roleIndex]}
-          </span>{' '}
-          based in Kansas.
+        {/* Typewriter roles in the coding font */}
+        <p
+          className="animate-blur-in mb-6 flex min-h-[2rem] items-center justify-center gap-1 font-mono text-base sm:text-xl md:text-2xl text-accent"
+          style={stagger(1)}
+          aria-label={roles.join(', ')}
+        >
+          <span aria-hidden="true">{typed}</span>
+          <span aria-hidden="true" className="inline-block h-[1.1em] w-[0.55em] bg-accent/80 animate-blink" />
         </p>
 
         <p
