@@ -17,7 +17,7 @@ export function onAnchorClick(event, href) {
  * Pill link with a blue accent-gradient ring that fades in on hover.
  * Adapted from the Hirael portfolio template's RingLink (MIT).
  *
- * Props: href, children, target, rel, ariaLabel, outerClassName, innerClassName
+ * Props: href, children, target, rel, ariaLabel, onClick, outerClassName, innerClassName
  */
 export default function RingLink({
   href,
@@ -25,6 +25,7 @@ export default function RingLink({
   target,
   rel,
   ariaLabel,
+  onClick,
   outerClassName,
   innerClassName,
 }) {
@@ -34,7 +35,10 @@ export default function RingLink({
       target={target}
       rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
       aria-label={ariaLabel}
-      onClick={(e) => onAnchorClick(e, href)}
+      onClick={(e) => {
+        onClick?.(e)
+        onAnchorClick(e, href)
+      }}
       className={cn('group relative inline-flex shrink-0', outerClassName)}
     >
       <span

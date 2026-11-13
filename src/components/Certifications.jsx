@@ -2,6 +2,7 @@ import { ExternalLink } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
 import AwardsCarousel from './AwardsCarousel'
+import posthog, { isPosthogEnabled } from '../lib/posthog'
 
 const certifications = [
   {
@@ -97,6 +98,11 @@ export default function Certifications() {
                   href={cert.pdf}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    if (isPosthogEnabled) {
+                      posthog.capture('certificate_opened', { certificate_title: cert.title })
+                    }
+                  }}
                   className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-accent transition-colors mt-1"
                 >
                   <ExternalLink size={12} />

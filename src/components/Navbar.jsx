@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import posthog, { isPosthogEnabled } from '../lib/posthog'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -54,6 +55,7 @@ export default function Navbar() {
               href="/assets/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => isPosthogEnabled && posthog.capture('resume_opened', { placement: 'desktop_navigation' })}
               className="text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-background transition-all duration-200"
             >
               Resume
@@ -93,6 +95,7 @@ export default function Navbar() {
                 href="/assets/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => isPosthogEnabled && posthog.capture('resume_opened', { placement: 'mobile_navigation' })}
                 className="inline-block text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-background transition-all duration-200"
               >
                 Resume

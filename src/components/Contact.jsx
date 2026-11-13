@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { Mail, Github, Linkedin } from 'lucide-react'
 import Reveal from './Reveal'
 import Starfield from './Starfield'
+import posthog, { isPosthogEnabled } from '../lib/posthog'
 
 const EMAIL = 'yadhunath2003@gmail.com'
 
@@ -96,6 +97,11 @@ export default function Contact() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    if (isPosthogEnabled) {
+                      posthog.capture('contact_channel_opened', { channel: label.toLowerCase() })
+                    }
+                  }}
                   className="group flex flex-col items-center gap-2 p-4 bg-card/80 backdrop-blur border border-border rounded-xl hover:border-accent/40 hover:-translate-y-1 transition-all duration-300"
                 >
                   <Icon size={20} className="text-zinc-500 group-hover:text-accent transition-colors" />

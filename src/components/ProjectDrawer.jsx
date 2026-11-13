@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Github, X } from 'lucide-react'
 import RingLink from './RingLink'
+import posthog, { isPosthogEnabled } from '../lib/posthog'
 
 export function Tag({ label }) {
   return (
@@ -30,6 +31,15 @@ export default function ProjectDrawer({ project, onClose }) {
       document.body.style.overflow = prevOverflow
     }
   }, [onClose])
+
+  const trackResourceOpen = (resourceType) => {
+    if (isPosthogEnabled) {
+      posthog.capture('project_resource_opened', {
+        project_name: project.title,
+        resource_type: resourceType,
+      })
+    }
+  }
 
   return (
     <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-labelledby="project-drawer-title">
@@ -97,6 +107,7 @@ export default function ProjectDrawer({ project, onClose }) {
               <RingLink
                 href={project.github}
                 target="_blank"
+                onClick={() => trackResourceOpen(project.github.includes('github.com') ? 'repository' : 'case_study')}
                 innerClassName="bg-zinc-100 px-5 py-2.5 text-sm font-medium text-background group-hover:bg-background group-hover:text-zinc-100"
               >
                 {project.github.includes('github.com') ? (
@@ -116,6 +127,7 @@ export default function ProjectDrawer({ project, onClose }) {
               <RingLink
                 href={project.live}
                 target="_blank"
+                onClick={() => trackResourceOpen('live_site')}
                 innerClassName="border-2 border-border bg-background px-5 py-2.5 text-sm font-medium text-zinc-100 group-hover:border-transparent"
               >
                 {project.live.includes('devpost.com') ? 'Devpost' : 'Live site'}
