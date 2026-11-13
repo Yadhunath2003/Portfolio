@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { track } from '../lib/analytics'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -52,6 +53,7 @@ export default function Navbar() {
           <li>
             <a
               href="/assets/resume.pdf"
+              onClick={() => track('resume_downloaded', { location: 'navbar' })}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-background transition-all duration-200"
@@ -91,6 +93,7 @@ export default function Navbar() {
             <li>
               <a
                 href="/assets/resume.pdf"
+              onClick={() => track('resume_downloaded', { location: 'navbar' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block text-sm border border-accent text-accent px-4 py-1.5 rounded hover:bg-accent hover:text-background transition-all duration-200"

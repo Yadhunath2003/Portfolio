@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react'
 import RingLink from './RingLink'
 import Starfield from './Starfield'
+import { track } from '../lib/analytics'
 
 // Hero layout and motion adapted from the Hirael portfolio template (MIT).
 const roles = [
@@ -138,6 +139,7 @@ export default function Hero() {
           <RingLink
             href="/assets/resume.pdf"
             target="_blank"
+            onClick={() => track('resume_downloaded', { location: 'hero' })}
             outerClassName="transition-transform duration-300 hover:scale-105"
             innerClassName="border-2 border-border bg-background px-7 py-3.5 text-sm font-medium text-zinc-100 group-hover:border-transparent"
           >
@@ -156,6 +158,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
+              onClick={() => track('contact_clicked', { channel: label.toLowerCase(), location: 'hero' })}
               className="text-zinc-500 hover:text-accent transition-colors duration-200"
             >
               <Icon size={20} />

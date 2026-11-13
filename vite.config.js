@@ -12,4 +12,19 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Mirror the Netlify /ingest proxy (netlify.toml) for local dev.
+  server: {
+    proxy: {
+      '/ingest/static': {
+        target: 'https://us-assets.i.posthog.com',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/ingest/, ''),
+      },
+      '/ingest': {
+        target: 'https://us.i.posthog.com',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/ingest/, ''),
+      },
+    },
+  },
 })

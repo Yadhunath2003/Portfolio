@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Github, X } from 'lucide-react'
 import RingLink from './RingLink'
+import { track } from '../lib/analytics'
 
 export function Tag({ label }) {
   return (
@@ -97,6 +98,7 @@ export default function ProjectDrawer({ project, onClose }) {
               <RingLink
                 href={project.github}
                 target="_blank"
+                onClick={() => track('project_link_clicked', { project: project.title, link: project.github.includes('github.com') ? 'github' : 'kaggle' })}
                 innerClassName="bg-zinc-100 px-5 py-2.5 text-sm font-medium text-background group-hover:bg-background group-hover:text-zinc-100"
               >
                 {project.github.includes('github.com') ? (
@@ -116,6 +118,7 @@ export default function ProjectDrawer({ project, onClose }) {
               <RingLink
                 href={project.live}
                 target="_blank"
+                onClick={() => track('project_link_clicked', { project: project.title, link: 'live' })}
                 innerClassName="border-2 border-border bg-background px-5 py-2.5 text-sm font-medium text-zinc-100 group-hover:border-transparent"
               >
                 {project.live.includes('devpost.com') ? 'Devpost' : 'Live site'}

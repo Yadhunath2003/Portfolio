@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { trackSectionViews } from './lib/analytics'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -9,6 +11,8 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
+  useEffect(() => trackSectionViews(), [])
+
   return (
     <div className="min-h-screen bg-background text-zinc-900 dark:text-zinc-100">
       <Navbar />

@@ -6,6 +6,7 @@ import { ArrowUpRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import RingLink from './RingLink'
 import ProjectDrawer from './ProjectDrawer'
+import { track } from '../lib/analytics'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -145,6 +146,10 @@ export default function Projects() {
   const col2Ref = useRef(null)
   const [active, setActive] = useState(null)
   const close = useCallback(() => setActive(null), [])
+  const open = (p) => {
+    setActive(p)
+    track('project_opened', { project: p.title })
+  }
 
   // Pin the header and drift the two columns at different speeds (template "Visual playground").
   useEffect(() => {
@@ -171,7 +176,7 @@ export default function Projects() {
         <GalleryHeader />
         <div className="mx-auto mt-14 grid max-w-4xl gap-10 sm:grid-cols-2 justify-items-center">
           {featured.map((p) => (
-            <ProjectCard key={p.title} project={p} tilt={false} onOpen={() => setActive(p)} />
+            <ProjectCard key={p.title} project={p} tilt={false} onOpen={() => open(p)} />
           ))}
         </div>
         {drawer}
@@ -196,14 +201,14 @@ export default function Projects() {
           <div ref={col1Ref} className="flex flex-col items-center gap-[28vh] pt-[36vh]">
             {featured.slice(0, SPLIT).map((p) => (
               <div key={p.title} className="pointer-events-auto w-full flex justify-center">
-                <ProjectCard project={p} onOpen={() => setActive(p)} />
+                <ProjectCard project={p} onOpen={() => open(p)} />
               </div>
             ))}
           </div>
           <div ref={col2Ref} className="flex flex-col items-center gap-[28vh] pt-[64vh]">
             {featured.slice(SPLIT).map((p) => (
               <div key={p.title} className="pointer-events-auto w-full flex justify-center">
-                <ProjectCard project={p} onOpen={() => setActive(p)} />
+                <ProjectCard project={p} onOpen={() => open(p)} />
               </div>
             ))}
           </div>
