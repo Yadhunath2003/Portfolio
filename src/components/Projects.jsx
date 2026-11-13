@@ -6,6 +6,7 @@ import { ArrowUpRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import RingLink from './RingLink'
 import ProjectDrawer from './ProjectDrawer'
+import posthog, { isPosthogEnabled } from '../lib/posthog'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -144,6 +145,13 @@ export default function Projects() {
   const col1Ref = useRef(null)
   const col2Ref = useRef(null)
   const [active, setActive] = useState(null)
+  const openProject = useCallback((project) => {
+    if (isPosthogEnabled) {
+      posthog.capture('project_details_opened', { project_name: project.title })
+      posthog.logger.info('portfolio project details opened', { project_name: project.title })
+    }
+    setActive(project)
+  }, [])
   const close = useCallback(() => setActive(null), [])
 
   // Pin the header and drift the two columns at different speeds (template "Visual playground").
@@ -171,7 +179,7 @@ export default function Projects() {
         <GalleryHeader />
         <div className="mx-auto mt-14 grid max-w-4xl gap-10 sm:grid-cols-2 justify-items-center">
           {featured.map((p) => (
-            <ProjectCard key={p.title} project={p} tilt={false} onOpen={() => setActive(p)} />
+            <ProjectCard key={p.title} project={p} tilt={false} onOpen={() => openProject(p)} />
           ))}
         </div>
         {drawer}
@@ -196,14 +204,14 @@ export default function Projects() {
           <div ref={col1Ref} className="flex flex-col items-center gap-[28vh] pt-[36vh]">
             {featured.slice(0, SPLIT).map((p) => (
               <div key={p.title} className="pointer-events-auto w-full flex justify-center">
-                <ProjectCard project={p} onOpen={() => setActive(p)} />
+                <ProjectCard project={p} onOpen={() => openProject(p)} />
               </div>
             ))}
           </div>
           <div ref={col2Ref} className="flex flex-col items-center gap-[28vh] pt-[64vh]">
             {featured.slice(SPLIT).map((p) => (
               <div key={p.title} className="pointer-events-auto w-full flex justify-center">
-                <ProjectCard project={p} onOpen={() => setActive(p)} />
+                <ProjectCard project={p} onOpen={() => openProject(p)} />
               </div>
             ))}
           </div>
